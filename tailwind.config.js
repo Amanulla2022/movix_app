@@ -6,6 +6,9 @@ module.exports = {
       boxShadow: {
         pink: "0 0 0.625em rgba(255, 192, 203)",
       },
+      colors: {
+        "navy-blue": "#04152d",
+      },
     },
   },
   plugins: [],

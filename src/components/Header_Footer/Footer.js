@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="mt-96 bg-black text-white py-12">
+    <footer className=" bg-black text-white py-12">
       <ul className="flex flex-wrap justify-center gap-8 mb-8">
         <li className="footer-list-item">Terms Of Use</li>
         <li className="footer-list-item">Privacy-Policy</li>
