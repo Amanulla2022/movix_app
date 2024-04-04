@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Search = () => {
   const { query } = useParams();
@@ -21,7 +21,11 @@ const Search = () => {
       <div className="flex flex-wrap justify-center gap-4">
         {movies && movies.length > 0 ? (
           movies.map((movie) => (
-            <div key={movie.imdbID} className="flex flex-col gap-2">
+            <Link
+              to={`/movies/${movie.imdbID}`}
+              key={movie.imdbID}
+              className="flex flex-col gap-2"
+            >
               <img
                 className="h-72 w-72 object-cover"
                 src={movie.Poster}
@@ -32,7 +36,7 @@ const Search = () => {
                 {truncateTitle(movie.Title, 20)}
               </p>
               <p className="text-gray-400 font-semibold">{movie.Year}</p>
-            </div>
+            </Link>
           ))
         ) : (
           <p>No movies found</p>

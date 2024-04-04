@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { fetchMovies, fetchTvShows } from "../../utils/api";
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import ContextWrapper from "../../ContextWrapper";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import SwitchTabs from "../SwithTabs";
 import { Link } from "react-router-dom";
 
-const ToogleFetch = () => {
+const Hindi = () => {
   const [content, setContent] = useState("movies");
   const [data, setData] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
@@ -16,25 +16,19 @@ const ToogleFetch = () => {
       try {
         let initialData = [];
         if (content === "movies") {
-          const movieQueries = ["Batman", "Superman", "Titanic"];
-          for (const query of movieQueries) {
-            const movies = await fetchMovies(query);
-            initialData = initialData.concat(movies);
-          }
+          const hindiMovies = await fetchMovies("Indian");
+          initialData = hindiMovies;
         } else if (content === "tvShows") {
-          const tvShowQueries = ["Game of Thrones", "Stranger Things"];
-          for (const query of tvShowQueries) {
-            const tvShows = await fetchTvShows(query);
-            initialData = initialData.concat(tvShows);
-          }
+          const hindiTvShows = await fetchTvShows("Indian");
+          initialData = hindiTvShows;
         }
         shuffleArray(initialData);
+        console.log(initialData);
         setData(initialData);
       } catch (error) {
         console.error("Error fetching initial data:", error);
       }
     };
-
     fetchInitialData();
   }, [content]);
 
@@ -66,12 +60,11 @@ const ToogleFetch = () => {
       [array[i], array[j]] = [array[j], array[i]];
     }
   };
-
   return (
     <ContextWrapper>
       <div className="bg-navy-blue m-12 p-4">
         <div className="flex justify-around items-center">
-          <h1 className="text-white text-2xl">Top Rated</h1>
+          <h1 className="text-white text-2xl">Indian</h1>
           <SwitchTabs
             data={["Movies", "TV Shows"]}
             onTabChange={(tab) => {
@@ -126,4 +119,4 @@ const ToogleFetch = () => {
   );
 };
 
-export default ToogleFetch;
+export default Hindi;

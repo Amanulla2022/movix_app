@@ -24,7 +24,7 @@ export const fetchTvShows = async (query) => {
       params: {
         apikey: API_KEY,
         s: query,
-        type: "series", // Specify type as "series" to fetch TV shows
+        type: "series",
       },
     });
     return response.data.Search;
@@ -41,7 +41,7 @@ export const fetchTrendingMovies = async () => {
     );
     const data = await response.json();
     console.log(data);
-    return data.Search; // Assuming the response contains an array of movie objects
+    return data.Search;
   } catch (error) {
     console.error("Error fetching trending movies:", error);
     return [];
@@ -56,7 +56,7 @@ export const fetchTrendingTvShows = async () => {
     );
     const data = await response.json();
     console.log(data);
-    return data.Search; // Assuming the response contains an array of TV show objects
+    return data.Search;
   } catch (error) {
     console.error("Error fetching trending TV shows:", error);
     return [];
@@ -95,5 +95,20 @@ export const fetchPopularTvShows = async () => {
   } catch (error) {
     console.error("Error fetching popular TV shows:", error);
     return [];
+  }
+};
+
+export const fetchGetDetails = async (id) => {
+  try {
+    const response = await fetch(
+      `https://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch movie details");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error(`Error fetching movie details: ${error.message}`);
   }
 };

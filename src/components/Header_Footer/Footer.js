@@ -4,6 +4,7 @@ import {
   FaInstagram,
   FaTwitter,
   FaLinkedin,
+  FaGithub,
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -26,18 +27,34 @@ const Footer = () => {
         job please refer me!!!
       </div>
       <div className="flex justify-center gap-4">
-        <span className="footer-span">
-          <FaFacebookF />
-        </span>
-        <span className="footer-span">
-          <FaInstagram />
-        </span>
-        <span className="footer-span">
-          <FaTwitter />
-        </span>
-        <span className="footer-span">
-          <FaLinkedin />
-        </span>
+        <a href="#">
+          <span className="footer-span">
+            <FaFacebookF />
+          </span>
+        </a>
+        <a href="#">
+          <span className="footer-span">
+            <FaInstagram />
+          </span>
+        </a>
+        <a href="#">
+          <span className="footer-span">
+            <FaTwitter />
+          </span>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/amanulla-mulla-000678232/"
+          target="_blank"
+        >
+          <span className="footer-span">
+            <FaLinkedin />
+          </span>
+        </a>
+        <a href="https://github.com/Amanulla2022" target="_blank">
+          <span className="footer-span">
+            <FaGithub />
+          </span>
+        </a>
       </div>
     </footer>
   );

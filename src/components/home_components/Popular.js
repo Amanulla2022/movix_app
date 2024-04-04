@@ -3,6 +3,7 @@ import { fetchPopularMovies, fetchPopularTvShows } from "../../utils/api";
 import SwitchTabs from "../SwithTabs";
 import ContextWrapper from "../../ContextWrapper";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const Popular = () => {
   const [content, setContent] = useState("movies");
@@ -59,7 +60,6 @@ const Popular = () => {
           <h1 className="text-white text-2xl">Most Popular</h1>
           <SwitchTabs
             data={["Movies", "TV Shows"]}
-            defaultTab="Movies" // Set the defaultTab to "Movies"
             onTabChange={(tab) => {
               setContent(tab === "Movies" ? "movies" : "tvShows");
             }}
@@ -75,10 +75,14 @@ const Popular = () => {
                 : "text-gray-700 cursor-pointer"
             }`}
           />
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {data && data.length > 0 ? (
               data.slice(startIndex, endIndex + 1).map((item) => (
-                <div key={item.imdbID} className="flex flex-col item-start">
+                <Link
+                  key={item.imdbID}
+                  to={`/${content}/${item.imdbID}`}
+                  className="flex flex-col item-start"
+                >
                   <img
                     className="w-48 h-72 object-cover rounded"
                     src={item.Poster}
@@ -91,7 +95,7 @@ const Popular = () => {
                     {truncateTitle(item.Title, 20)}
                   </p>
                   <p className="text-gray-400">{item.Year}</p>
-                </div>
+                </Link>
               ))
             ) : (
               <p className="text-white">No data found</p>
