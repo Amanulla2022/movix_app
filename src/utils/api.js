@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_KEY = "c8203424";
-const BASE_URL = "http://www.omdbapi.com/";
+const BASE_URL = "https://www.omdbapi.com/";
 
 export const fetchMovies = async (query) => {
   try {
@@ -48,7 +48,6 @@ export const fetchTrendingMovies = async () => {
   }
 };
 
-// Function to fetch trending TV shows
 export const fetchTrendingTvShows = async () => {
   try {
     const response = await fetch(
@@ -66,7 +65,7 @@ export const fetchTrendingTvShows = async () => {
 export const fetchPopularMovies = async () => {
   try {
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&s=popular&type=movie`
+      `${BASE_URL}?apikey=${API_KEY}&s=popular&type=movie`
     );
     const data = await response.json();
     if (data.Response === "True") {
@@ -83,7 +82,7 @@ export const fetchPopularMovies = async () => {
 export const fetchPopularTvShows = async () => {
   try {
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&s=popular&type=series`
+      `${BASE_URL}?apikey=${API_KEY}&s=popular&type=series`
     );
     const data = await response.json();
     if (data.Response === "True") {
@@ -100,9 +99,7 @@ export const fetchPopularTvShows = async () => {
 
 export const fetchGetDetails = async (id) => {
   try {
-    const response = await fetch(
-      `https://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`
-    );
+    const response = await fetch(`${BASE_URL}?i=${id}&apikey=${API_KEY}`);
     if (!response.ok) {
       throw new Error("Failed to fetch movie details");
     }
